@@ -46,9 +46,9 @@
 		      <button class="btn btn-primary" type="submit" >제출</button>
 		      <a type ="button" class="btn btn-info listBtn" th:href="@{list}">List</a> 
    			    </div>
-            <!--<a type ="button" class="btn btn-danger removeBtn" th:href="@{remove(page=${requestDTO.page})}">Remove</a> -->
+          
 		</form>
-
+			<button type ="button" class="btn btn-danger removeBtn1">Remove</button> 
  	        
    		      
 
@@ -57,11 +57,12 @@
 		    
 		    	var actionForm = $("form");     // 폼태그 객체
 		    	
-		    	
-	   			$(".removeBtn").click(function(){
+	   			$(".removeBtn1").click(function(){
+		
 				actionForm
 					.attr("action", "/guestbook/remove")
 					.attr("method", "post");
+					
 					actionForm.submit();
 				});
 				
