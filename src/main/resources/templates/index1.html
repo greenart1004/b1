@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  	<head>
+		<link th:href="@{/css/main.css}" rel="stylesheet">
+		<script type="text/javascript" th:src="@{/js/actions.js}"></script>
+
+	    <meta charset="utf-8">
+	    <title>게시판</title>
+
+ 	</head>
+	<body>
+		<h1>Greenart HomePage</h1><br>
+		<h2>Heading</h2>
+		<p>
+			This is text on which we want to apply <strong>ver special</strong> styling
+		</p>
+		
+		<button type="button" th:onclick="demo()"> Show Alert</button>
+		<button type="button" th:onclick="aa()"> AA </button>
+
+<script th:javascript>
+		function aa(){
+			var age = 21;
+			if (age >= 20){
+			alert("성공입니다. 100 100  축하합니다.");
+			}
+			if(age <20){
+				alert("20보다 작습니다.");
+			}
+		}
+</script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+		crossorigin="anonymous"></script>
+
+ 	</body>
+  </html>
