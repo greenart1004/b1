@@ -16,17 +16,17 @@
 		</div><br><br><br>
 		<div>     <h1> 회원 수정 </h1>   </div> 
 
-		<form th:action="@{modify}" th:method="post">
+		<form id="12" th:action="@{modify}" th:method="post">
 			<input type="hidden" name="page" th:value="${requestDTO.page}">
 			<div class="form-group">
 				<label >Gno</label>
 				<input type ="text" class="form-control" name = "gno" th:value="${dto.gno}" readonly>	
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="13">
 				<label >Title</label>
 				<input type ="text" class="form-control" name = "title" th:value="${dto.title}"></input>	
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="13">
 				<label>Content</label>
 				<textarea class="form-control" rows="5" name = "content"> [[${dto.content}]]</textarea>
 			</div>
@@ -46,14 +46,37 @@
 		      <button class="btn btn-primary" type="submit" >제출</button>
 		      <a type ="button" class="btn btn-info listBtn" th:href="@{list}">List</a> 
    			    </div>
-          
 		</form>
 			<button type ="button" class="btn btn-danger removeBtn1">Remove</button> 
  	        
    		      
+<!-- 
+			<form id="target" action="@{/list}" >
+				<label >아무거나 입력</label>
+					<input type="text" />
+					<input id="aaa" type ="text" class="form-control" name = "title" ></input>	
+					<textarea id="aaa" class="form-control" rows="5" name = "content"> </textarea>
+				<input type="submit"/>
+			</form>
+	
+	
+		<script >
+
+			var t = document.getElementById('target');
+			t.addEventListener('submit', function(event){
+				if(document.getElementById('aaa').value.length == 0){
+					alert('Name 필드의 값이 누락 되었습니다.');
+					event.preventDefault();
+				}	
+			});
+		</script> -->
+
+
+
+
 
 		    
-		    <script th:inline="javascript">
+    <!-- <script th:inline="javascript">
 		    
 		    	var actionForm = $("form");     // 폼태그 객체
 		    	
@@ -75,10 +98,10 @@
 					.attr("action", "/guestbook/modify")
 					.attr("method","post");
 					actionForm.submit();
-				});
+				}); -->
 	
-		    	/*
-		    	$(".listBtn").click(function(){
+		
+		    	<!-- $(".listBtn").click(function(){
 					if(!confirm("삭제하시겠습니까?")){
 						return;
 					}
@@ -88,9 +111,9 @@
 					.attr("method","post");
 					actionForm.submit();
 				}); 
-		    	*/
+		 
 		    	
-	    	</script>
+	    	</script> -->
 		    
 		    
 		    
