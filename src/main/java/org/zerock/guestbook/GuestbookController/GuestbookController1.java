@@ -78,6 +78,10 @@ public class GuestbookController1 {
     	service.modify(dto);
     	
     	redirectAttributes.addAttribute("page", requestDTO.getPage());
+        redirectAttributes.addAttribute("type",requestDTO.getType());
+        redirectAttributes.addAttribute("keyword",requestDTO.getKeyword());
+    	
+    	
     	redirectAttributes.addAttribute("gno", dto.getGno());
     
         return  new RedirectView("/guestbook/read");              
@@ -85,19 +89,15 @@ public class GuestbookController1 {
     
     @PostMapping("/remove")
     public RedirectView remove(long gno, RedirectAttributes redirectAttributes){
+    
     	log.info("gno..." + gno);    //새로 추가된 엔티티의 번호
-    	
+    		
     	service.remove(gno);
     	
     	redirectAttributes.addFlashAttribute("msg", gno);
     	
-    return  new RedirectView("/guestbook/list");              
+    return new RedirectView("/guestbook/list");              
     }
     
-    
-    
-    	
-    	
-
     
 }

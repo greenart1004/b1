@@ -1,5 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
+
   	<head>
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +27,7 @@
 		</div><br><br><br>
    		 <h1> 회원 수정 </h1>   
  
-		<form id="aaaaa" th:action="@{modify}" th:method="post">
+		<form  class="akak" id="aaaaa" th:action="@{modify}" th:method="post">
 			<input type="hidden" name="page" th:value="${requestDTO.page}">
 			<div class="form-group">
 				<label >Gno</label>
@@ -56,67 +57,48 @@
 		      <button class="bbbb" type="submit" >제출</button>
 		      <a type ="button" class="btn btn-info listBtn" th:href="@{list}">List</a> 
    			    </div>
-		</form>
-			<button type ="button" class="btn btn-danger removeBtn1">Remove</button> 
- 	        
-   		      
-
-			<form id="target" action="@{/list}">
-				<label >아무거나 입력</label>
-				<input class="form-control"type="text" name="aaa"/>
-					<!-- <input id="bbb" type ="text" class="form-control" name = "bbb" />
-					<textarea id="ccc" class="form-control" rows="5" name = "ccc"> </textarea> -->
-				<input class="ddd" type="submit"/>
 			</form>
 
+	      	   <button class="dddd" type ="button" >Remove</button> 
+
+
+
+    
+    	 <script >	
 	
-	
-	 <script >
-
-
-		</script> 
-
-
-
-
-
-		    
-    <!-- <script th:inline="javascript">
-		    
-		    	var actionForm = $("form");     // 폼태그 객체
-		    	
-	   			$(".removeBtn1").click(function(){
-		
-				actionForm
-					.attr("action", "/guestbook/remove")
-					.attr("method", "post");
-					
-					actionForm.submit();
-				});
+			$(".dddd").click(function(){
+				var kkkaa = $(".akak"); //form 태그 객체
 				
-	
-				$(".modifyBtn").click(function(){
-					if(!confirm("수정하시겠습니까?")){
-						return;
-					}
-				actionForm
-					.attr("action", "/guestbook/modify")
-					.attr("method","post");
-					actionForm.submit();
-				}); -->
+				 kkkaa
+					.attr("action", "remove")
+					.attr("method", "post");
+			    		
+				 kkkaa.submit();
+				});
+
+
+				//	$(".modifyBtn").click(function(){
+					// 	if(!confirm("수정하시겠습니까?")){
+					// 		return;
+					// 	}
+				// actionForm
+				// 	.attr("action", "/guestbook/modify")
+				// 	.attr("method","post");
+				// 	actionForm.submit();
+				// }); -->
 	
 		
-		    	<!-- $(".listBtn").click(function(){
-					if(!confirm("삭제하시겠습니까?")){
-						return;
-					}
+		    	// <!-- $(".listBtn").click(function(){
+				// 	if(!confirm("삭제하시겠습니까?")){
+				// 		return;
+				// 	}
 					
-				actionForm
-					.attr("action", "/guestbook/modify")
-					.attr("method","post");
-					actionForm.submit();
-				}); 
-	    	</script> -->
+				// actionForm
+				// 	.attr("action", "/guestbook/modify")
+				// 	.attr("method","post");
+				// 	actionForm.submit();
+				// }); 
+	    	</script>
 
  	</body>
   </html>

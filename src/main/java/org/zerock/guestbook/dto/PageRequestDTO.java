@@ -15,6 +15,7 @@ public class PageRequestDTO {        // DTO 로 받기위한  설정
 
     private int page;
     private int size;
+    
     private String type;
     private String keyword;
     
