@@ -19,7 +19,7 @@ public class QGuestbook2 extends EntityPathBase<Guestbook2> {
 
     public static final QGuestbook2 guestbook2 = new QGuestbook2("guestbook2");
 
-    public final QBaseEntity2 _super = new QBaseEntity2(this);
+    public final QBaseEntity _super = new QBaseEntity(this);
 
     public final StringPath content = createString("content");
 
