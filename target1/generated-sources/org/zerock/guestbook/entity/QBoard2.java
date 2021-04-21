@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QBoard1 is a Querydsl query type for Board1
+ * QBoard2 is a Querydsl query type for Board2
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QBoard1 extends EntityPathBase<Board1> {
+public class QBoard2 extends EntityPathBase<Board2> {
 
-    private static final long serialVersionUID = 415565205L;
+    private static final long serialVersionUID = 415565206L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QBoard1 board1 = new QBoard1("board1");
+    public static final QBoard2 board2 = new QBoard2("board2");
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
@@ -38,23 +38,23 @@ public class QBoard1 extends EntityPathBase<Board1> {
 
     public final QMember1 writer1;
 
-    public QBoard1(String variable) {
-        this(Board1.class, forVariable(variable), INITS);
+    public QBoard2(String variable) {
+        this(Board2.class, forVariable(variable), INITS);
     }
 
-    public QBoard1(Path<? extends Board1> path) {
+    public QBoard2(Path<? extends Board2> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QBoard1(PathMetadata metadata) {
+    public QBoard2(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QBoard1(PathMetadata metadata, PathInits inits) {
-        this(Board1.class, metadata, inits);
+    public QBoard2(PathMetadata metadata, PathInits inits) {
+        this(Board2.class, metadata, inits);
     }
 
-    public QBoard1(Class<? extends Board1> type, PathMetadata metadata, PathInits inits) {
+    public QBoard2(Class<? extends Board2> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.writer1 = inits.isInitialized("writer1") ? new QMember1(forProperty("writer1")) : null;
     }

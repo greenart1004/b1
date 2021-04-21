@@ -1,5 +1,6 @@
 package org.zerock.guestbook.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,6 @@ public class Reply1 extends BaseEntity{
     private String replyer1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Board1 board1;
+    private Board2 board1;
 
 }

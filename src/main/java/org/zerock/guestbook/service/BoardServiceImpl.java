@@ -7,16 +7,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.guestbook.dto.BoardDTO;
-import org.zerock.guestbook.dto.GuestbookDTO;
 import org.zerock.guestbook.dto.PageRequestDTO;
 import org.zerock.guestbook.dto.PageResultDTO;
-import org.zerock.guestbook.entity.Board1;
-import org.zerock.guestbook.entity.Guestbook2;
-import org.zerock.guestbook.entity.QBoard1;
+import org.zerock.guestbook.entity.Board2;
+import org.zerock.guestbook.entity.QBoard2;
 import org.zerock.guestbook.entity.QMember1;
 import org.zerock.guestbook.repository.BoardRepository;
-
+import org.zerock.guestbook.repository.ReplyRepository;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -32,11 +31,13 @@ public class BoardServiceImpl  implements BoardService  {
 
 	private final BoardRepository repository;
 	
+	private final ReplyRepository replyRepository;
+	
     @Override
-    public Long register(BoardDTO dto) {                      //// register()
-    	log.info("DTO------------------------");
-    	log.info(dto);
-    	Board1 entity = dtoToEntity(dto);
+    public Long register(BoardDTO dto1) {                      //// register()
+    	log.info("DTO1------------------------");
+    	log.info(dto1);
+    	Board2 entity = dtoToEntity(dto1);
     	log.info(entity);                                      
     	repository.save(entity);
     	return entity.getGno1();    
@@ -44,16 +45,16 @@ public class BoardServiceImpl  implements BoardService  {
 /////////////////////////////////////////
 
     @Override
-    public PageResultDTO<BoardDTO, Board1> getList(PageRequestDTO requestDTO) {  // getList()
+    public PageResultDTO<BoardDTO, Board2> getList(PageRequestDTO requestDTO) {  // getList()
     	Pageable pageable = requestDTO.getPageable(Sort.by("gno1").descending());
     	
     	BooleanBuilder booleanBuilder = getSearch(requestDTO);  // 검색조건처리
     	
-    	Page<Board1> result = repository.findAll(booleanBuilder, pageable); // Querydsl 사용
+    	Page<Board2> result = repository.findAll(booleanBuilder, pageable); // Querydsl 사용
     	
 //    	Page<Board1> result = repository.findAll(pageable);
     	
-    	Function<Board1, BoardDTO> fn = (entity -> entityToDto(entity));
+    	Function<Board2, BoardDTO> fn = (entity -> entityToDto(entity));
     	
     	return new PageResultDTO<>(result, fn );   
 	}
@@ -61,32 +62,36 @@ public class BoardServiceImpl  implements BoardService  {
     
     //////////////////////////////////////// 
     @Override
-    public BoardDTO read(Long gno1) {
+    public BoardDTO get(Long gno1) {
     	
-    	Optional<Board1> result = repository.findById(gno1);
+    	Optional<Board2> result = repository.findById(gno1);
     	
     	return result.isPresent() ? entityToDto(result.get()) : null;
     }
 	//////////////////////////////  
+    @Transactional
     @Override
-    public void remove(Long gno1) {
-    	
-  	repository.deleteById(gno1);
+    public void removeWithReplies(Long gno1) {
+
+        //댓글 부터 삭제
+        replyRepository.deleteById(gno1);//// deleteById()????
+
+        repository.deleteById(gno1);
     }
     
     
     @Override
-    public void modify(BoardDTO dto) {
+    public void modify(BoardDTO dto1) {
     	
-    	Optional<Board1> result = repository.findById(dto.getGno1());
+    	Optional<Board2> result = repository.findById(dto1.getGno1());
     	
     	if(result.isPresent()) {
     		
-    		Board1 entity = result.get();
+    		Board2 entity = result.get();
     		
-    		entity.changeTitle(dto.getTitle1());
+    		entity.changeTitle(dto1.getTitle1());
     		
-    		entity.changeContent(dto.getContent1());
+    		entity.changeContent(dto1.getContent1());
     	
     		repository.save(entity);    	
     	}
@@ -104,7 +109,7 @@ public class BoardServiceImpl  implements BoardService  {
     		return booleanBuilder;
     	}
     	QMember1 qMember1 = QMember1.member1;
-    	QBoard1 qBoard1 = QBoard1.board1;
+    	QBoard2 qBoard1 = QBoard2.board2;
     	String keyword = requestDTO.getKeyword();
     	BooleanExpression expression = qBoard1.gno1.gt(0L);       //gno > 0 조건만 생성
     	booleanBuilder.and(expression);

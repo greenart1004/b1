@@ -1,5 +1,6 @@
 package org.zerock.guestbook.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,27 +21,27 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString(exclude = "writer1")
-public class Board1 extends BaseEntity {
+public class Board2 extends BaseEntity {
 		
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gno1;
 
-	@Column(length = 100, nullable = false)
+	
 	private String title1;
 
-	@Column(length = 1500, nullable = false)
+
 	private String content1;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Member1 writer1;
 
 	public void changeTitle(String title) {
-		this.title1 = title;
+		this.title1 = title1;
 	}
 
 	public void changeContent(String content) {
-		this.content1 = content;
+		this.content1 = content1;
 	}
 }   

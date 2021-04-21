@@ -1,0 +1,138 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script
+		  src="https://code.jquery.com/jquery-3.6.0.min.js"
+		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		  crossorigin="anonymous">
+		</script>  	
+
+	
+		<link th:href="@{/css/main.css}" rel="stylesheet">
+		<script  type="text/javascript" th:src="@{/js/actions.js}"></script>
+		
+	    <!-- Bootstrap core CSS -->
+	    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	
+	    <!-- Custom styles for this template -->
+	    <link th:href="@{/css/simple-sidebar.css}" rel="stylesheet">
+  	    <link href="starter-template.css" rel="stylesheet">
+
+	
+	    <!-- Bootstrap core JavaScript -->
+	    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    
+
+	
+
+		<title>회원 리스트</title>
+ 	</head>
+ 	
+	<body>
+	
+	<div class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace = "fragments/common :: menu('board')">
+		</div><br><br><br>
+<!--	<h1 class="mt-4">Book List Page
+		<span>
+			<a th:href="@{/board/regeister}">
+				<button type ="button" class="btn btn-outline-primary">REGISTER</button>
+		</span>
+	</h1>	-->
+
+         <form action="/board/list" method="get" id="searchForm">
+            <div class="input-group">
+            <input type="hidden" name="page" value = "1">
+                <div class="input-group-prepend">
+                    <select class="custom-select" name="type">
+                        <option th:selected="${type == null}">-------</option>
+                        <option value="t" th:selected="${type =='t'}" >제목</option>
+                        <option value="c" th:selected="${type =='c'}"  >내용</option>
+                        <option value="w"  th:selected="${type =='w'}" >작성자</option>
+                        <option value="tc"  th:selected="${type =='tc'}" >제목 + 내용</option>
+                        <option value="tcw"  th:selected="${type =='tcw'}" >제목 + 내용 + 작성자</option>
+                    </select>
+                </div>
+                <input class="form-control" name="keyword" th:value="${keyword}">
+                <div class="input-group-append" id="button-addon4">
+                    <button class="btn btn-outline-secondary btn-search" type="button">Search</button>
+                    <button class="btn btn-outline-secondary btn-clear" type="button">Clear</button>
+                </div>
+            </div>
+        </form>
+
+
+		<table class="table table-striped">
+			<thead>
+				<th scope ="col"> # </th>
+				<th scope ="col"> Title </th>
+				<th scope ="col"> Content </th>
+				<th scope ="col"> Redate </th><br>
+			</thead>
+			<tbody>
+				<tr th:each="dto : ${result.dtoList}" >
+				<th scope="row">
+					<a th:href="@{/board/read(gno1 = ${dto.gno1},
+						page= ${result.page})}">				
+						[[${dto.gno1}]]
+					</a>
+					</th>
+					<td>[[${dto.title1}]]</td>
+					<td>[[${dto.content1}]]</td>
+					<td>[[${#temporals.format(dto.regDate1, 'yyyy/MM/dd')}]]</td>
+				</tr>
+			</tbody>
+	</table><br>
+		
+    <div class="right">
+	   	<a class="btn btn-primary" type="button" th:href="@{register}">글쓰기</a>
+     </div>
+
+<!--		<ul class="pagination h-100 justify-content-center align-items-center">
+		    <li class="page-item " th:if="${result.prev}">
+		        <a class="page-link" th:href="@{/board/list(page= ${result.start -1})}" tabindex="-1">Previous</a>
+		     </li>
+		     <li th:class=" 'page-item ' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+	 	 		<a class="page-link" th:href="@{/board/list(page = ${page})}"> [[${page}]] </a>
+		     </li>
+		     <li class="page-item" th:if="${result.next}">
+	             <a class="page-link" th:href="@{/board/list(page= ${result.end + 1})}">Next</a>
+		     </li>
+		</ul>
+		   -->
+		   
+		   
+		   
+		   
+		   
+		   <script th:inline="javascript">
+
+            
+            var searchForm = $("#searchForm");
+
+            $('.btn-search').click(function(e){
+
+                searchForm.submit();
+
+            });
+
+            $('.btn-clear').click(function(e){
+
+                searchForm.empty().submit();
+
+            });
+
+
+        </script>
+
+    
+
+    
+  
+ 	</body>
+  </html>
+    

@@ -24,7 +24,7 @@ public class QReply1 extends EntityPathBase<Reply1> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final QBoard1 board1;
+    public final QBoard2 board1;
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modDate = _super.modDate;
@@ -56,7 +56,7 @@ public class QReply1 extends EntityPathBase<Reply1> {
 
     public QReply1(Class<? extends Reply1> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.board1 = inits.isInitialized("board1") ? new QBoard1(forProperty("board1"), inits.get("board1")) : null;
+        this.board1 = inits.isInitialized("board1") ? new QBoard2(forProperty("board1"), inits.get("board1")) : null;
     }
 
 }
