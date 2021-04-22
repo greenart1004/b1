@@ -37,11 +37,11 @@ public class Board2 extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Member1 writer1;
 
-	public void changeTitle(String title) {
+	public void changeTitle(String title1) {
 		this.title1 = title1;
 	}
 
-	public void changeContent(String content) {
+	public void changeContent(String content1) {
 		this.content1 = content1;
 	}
 }   

@@ -1,48 +1,11 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-  	<head>
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
 
-		<script
-		  src="https://code.jquery.com/jquery-3.6.0.min.js"
-		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-		  crossorigin="anonymous">
-		</script>  	
+    <th:block th:fragment="content">
 
-	
-		<link th:href="@{/css/main.css}" rel="stylesheet">
-		<script  type="text/javascript" th:src="@{/js/actions.js}"></script>
-		
-	    <!-- Bootstrap core CSS -->
-	    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-	
-	    <!-- Custom styles for this template -->
-	    <link th:href="@{/css/simple-sidebar.css}" rel="stylesheet">
-  	    <link href="starter-template.css" rel="stylesheet">
-
-	
-	    <!-- Bootstrap core JavaScript -->
-	    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-	    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    
-
-	
-
-		<title>회원 리스트</title>
- 	</head>
- 	
-	<body>
-	
-	<div class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace = "fragments/common :: menu('board')">
-		</div><br><br><br>
-<!--	<h1 class="mt-4">Book List Page
-		<span>
-			<a th:href="@{/board/regeister}">
-				<button type ="button" class="btn btn-outline-primary">REGISTER</button>
-		</span>
-	</h1>	-->
+        <h1 class="mt-4">게시판</h1>
 
          <form action="/board/list" method="get" id="searchForm">
             <div class="input-group">
@@ -90,9 +53,11 @@
 		
     <div class="right">
 	   	<a class="btn btn-primary" type="button" th:href="@{register}">글쓰기</a>
+	   	<a class="btn btn-primary" type="button" th:href="@{list}">리스트</a>
      </div>
+     
 
-<!--		<ul class="pagination h-100 justify-content-center align-items-center">
+		<ul class="pagination h-100 justify-content-center align-items-center">
 		    <li class="page-item " th:if="${result.prev}">
 		        <a class="page-link" th:href="@{/board/list(page= ${result.start -1})}" tabindex="-1">Previous</a>
 		     </li>
@@ -103,7 +68,7 @@
 	             <a class="page-link" th:href="@{/board/list(page= ${result.end + 1})}">Next</a>
 		     </li>
 		</ul>
-		   -->
+		   
 		   
 		   
 		   

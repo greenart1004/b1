@@ -14,6 +14,7 @@ import org.zerock.guestbook.dto.PageResultDTO;
 import org.zerock.guestbook.entity.Board2;
 import org.zerock.guestbook.entity.QBoard2;
 import org.zerock.guestbook.entity.QMember1;
+import org.zerock.guestbook.entity.Reply1;
 import org.zerock.guestbook.repository.BoardRepository;
 import org.zerock.guestbook.repository.ReplyRepository;
 
@@ -73,25 +74,24 @@ public class BoardServiceImpl  implements BoardService  {
     @Override
     public void removeWithReplies(Long gno1) {
 
-        //댓글 부터 삭제
-        replyRepository.deleteById(gno1);//// deleteById()????
-
-        repository.deleteById(gno1);
+//        replyRepository.deleteByRno1(gno1);
+       
+	    repository.deleteById(gno1);
     }
     
     
     @Override
-    public void modify(BoardDTO dto1) {
+    public void modify(BoardDTO boardDTO) {
     	
-    	Optional<Board2> result = repository.findById(dto1.getGno1());
+    	Optional<Board2> result = repository.findById(boardDTO.getGno1());
     	
     	if(result.isPresent()) {
     		
     		Board2 entity = result.get();
     		
-    		entity.changeTitle(dto1.getTitle1());
+    		entity.changeTitle(boardDTO.getTitle1());
     		
-    		entity.changeContent(dto1.getContent1());
+    		entity.changeContent(boardDTO.getContent1());
     	
     		repository.save(entity);    	
     	}

@@ -36,6 +36,39 @@ public class BoardController {
    //    return "board/list";
 
     }
+
+    @PostMapping("/remove")
+    public String remove(long gno1, RedirectAttributes redirectAttributes){
+
+
+        log.info("gno1: " + gno1);
+
+        boardService.removeWithReplies(gno1);
+
+        redirectAttributes.addFlashAttribute("msg", gno1);
+
+        return "redirect:/board/list";
+
+    }
+
+    @PostMapping("/modify")
+    public String modify(BoardDTO boardDTO,
+                         @ModelAttribute("requestDTO") PageRequestDTO requestDTO,
+                         RedirectAttributes redirectAttributes){
+
+        log.info("post modify.........................................");
+        log.info("dto: " + boardDTO);
+
+        boardService.modify(boardDTO);
+
+        redirectAttributes.addAttribute("page",requestDTO.getPage());
+        redirectAttributes.addAttribute("type",requestDTO.getType());
+        redirectAttributes.addAttribute("keyword",requestDTO.getKeyword());
+
+        redirectAttributes.addAttribute("gno1",boardDTO.getGno1());
+
+        return "redirect:/board/read";
+    }
     
     ////////////////////////////////////////////////////////////////////////////
     @GetMapping("/introduce1")
@@ -90,11 +123,11 @@ public class BoardController {
     }
 
     @PostMapping("/register")
-    public String registerPost(BoardDTO dto1, RedirectAttributes redirectAttributes){
+    public String registerPost(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
 
-        log.info("dto1..." + dto1);
+        log.info("dto1..." + boardDTO);
         //새로 추가된 엔티티의 번호
-        Long gno1 = boardService.register(dto1);
+        Long gno1 = boardService.register(boardDTO);
 
         log.info("gno1: " + gno1);
 
@@ -117,37 +150,5 @@ public class BoardController {
     }
 
 
-    @PostMapping("/remove")
-    public String remove(long gno1, RedirectAttributes redirectAttributes){
-
-
-        log.info("gno1: " + gno1);
-
-        boardService.removeWithReplies(gno1);
-
-        redirectAttributes.addFlashAttribute("msg", gno1);
-
-        return "redirect:/board/list";
-
-    }
-
-    @PostMapping("/modify")
-    public String modify(BoardDTO dto1,
-                         @ModelAttribute("requestDTO") PageRequestDTO requestDTO,
-                         RedirectAttributes redirectAttributes){
-
-        log.info("post modify.........................................");
-        log.info("dto: " + dto1);
-
-        boardService.modify(dto1);
-
-        redirectAttributes.addAttribute("page",requestDTO.getPage());
-        redirectAttributes.addAttribute("type",requestDTO.getType());
-        redirectAttributes.addAttribute("keyword",requestDTO.getKeyword());
-
-        redirectAttributes.addAttribute("gno1",dto1.getGno1());
-
-        return "redirect:/board/read";
-    }
 }
 	

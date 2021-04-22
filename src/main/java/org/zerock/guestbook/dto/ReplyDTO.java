@@ -2,7 +2,6 @@ package org.zerock.guestbook.dto;
 
 import java.time.LocalDateTime;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,22 +11,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardDTO {
+public class ReplyDTO {
 	
-	private Long gno1;
+	private Long rno1;
 	
-	private String title1;
+	private String text1;
 	
-	private String content1;
-	
-	//private String writerEmail1;	//작성자의 이메일(id)
-	
-	private String writer1; //작성자의 이름 
+	private String replyer1;
 	
 	private LocalDateTime regDate1, modDate1;
 	
-	private int replyCount1; //해당 게시글의 댓글 수}
-	
+
 //	public void changeTitle1(String title) {
 //		this.title1 = title1;
 //	}

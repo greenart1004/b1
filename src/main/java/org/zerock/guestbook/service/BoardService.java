@@ -16,7 +16,7 @@ public interface BoardService {
 
 	BoardDTO get(Long gno1);//
 	
-	void modify(BoardDTO dto1);//
+	void modify(BoardDTO boardDTO);//
 	
     void removeWithReplies(Long gno1);
 	
